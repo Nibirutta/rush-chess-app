@@ -1,0 +1,16 @@
+.main-header {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  width: 60vw;
+}
+
+.main-title {
+  font-size: 3rem;
+}
+
+.main-sub-title {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
