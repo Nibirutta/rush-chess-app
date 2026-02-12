@@ -2,10 +2,12 @@ import { useState, type ChangeEvent } from 'react';
 import { SubmitButton } from '../components/SubmitButton';
 import './LoginForm.css';
 import { InputField } from '../components/InputField';
+import { requestLogin } from '../api/player/playerService';
 
 export function LoginForm() {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ loading, setLoading ] = useState(false);
 
   function UpdateUsername(event: ChangeEvent<HTMLInputElement>) {
     setUsername(event.target.value);
@@ -15,8 +17,19 @@ export function LoginForm() {
     setPassword(event.target.value);
   }
 
-  function Login() {
-    console.log(username);
+  async function Login() {
+    if (!loading) {      
+      setLoading(true);
+
+      try {
+        const data = await requestLogin({username, password});
+
+        console.log(data);
+      } catch {
+        setLoading(false);
+      }
+      setLoading(false);
+    }
   }
 
   function RedirectRegister() {
