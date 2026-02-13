@@ -1,10 +1,14 @@
 import { refreshRoute } from "../utils/api-routes";
 import { requestRefresh } from "./player/playerService";
 import type { APIErrorType } from "../types/apiErrorType";
+import { dispatchAccountEvent } from "./accountEvents";
 
 let accessToken: string | null = null;
 let isRefreshing: boolean = false;
-let failedPromises: Array<{ resolve: (value: unknown) => void, reject: (reason?: unknown) => void}> = [];
+let failedPromises: Array<{
+  resolve: (value: unknown) => void;
+  reject: (reason?: unknown) => void;
+}> = [];
 
 function processQueue(error?: unknown | null) {
   failedPromises.forEach((promise) => {
@@ -22,23 +26,26 @@ export function setAccessToken(token: string | null) {
   accessToken = token;
 }
 
-export async function apiFetch(endpoint: string, requestOptions: RequestInit = {}) {
+export async function apiFetch(
+  endpoint: string,
+  requestOptions: RequestInit = {},
+) {
   const headers = new Headers(requestOptions.headers || {});
 
   if (accessToken) {
-    headers.append('Authorization', `Bearer ${accessToken}`);
+    headers.append("Authorization", `Bearer ${accessToken}`);
   }
 
   if (requestOptions.body) {
-    headers.append('Content-Type', 'application/json');
+    headers.append("Content-Type", "application/json");
   }
 
-  headers.append('Accept', 'application/json');
+  headers.append("Accept", "application/json");
 
   const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`, {
-    credentials: 'include',
+    credentials: "include",
     ...requestOptions,
-    headers
+    headers,
   });
 
   const notAllowed = response.status === 401 || response.status === 403;
@@ -50,12 +57,17 @@ export async function apiFetch(endpoint: string, requestOptions: RequestInit = {
       try {
         const refreshResponse = await requestRefresh();
         setAccessToken(refreshResponse.accessToken);
+        dispatchAccountEvent("updatePlayer", {
+          detail: refreshResponse.player,
+        });
 
         processQueue();
 
-        return apiFetch(endpoint, requestOptions);  
+        return apiFetch(endpoint, requestOptions);
       } catch (refreshError) {
         processQueue(refreshError);
+
+        dispatchAccountEvent("forceLogout");
 
         return Promise.reject(refreshError);
       } finally {
@@ -65,7 +77,7 @@ export async function apiFetch(endpoint: string, requestOptions: RequestInit = {
       return new Promise((resolve, reject) => {
         failedPromises.push({
           resolve,
-          reject
+          reject,
         });
       }).then((): unknown => {
         return apiFetch(endpoint, requestOptions);
@@ -80,9 +92,9 @@ export async function apiFetch(endpoint: string, requestOptions: RequestInit = {
     } catch (error) {
       console.log(error);
       errorData = {
-        message: 'An error occurred in the API',
+        message: "An error occurred in the API",
         statusCode: response.status | 500,
-        error: 'Connection Error'
+        error: "Connection Error",
       };
     }
 

@@ -7,5 +7,5 @@ export function LoginPage() {
       <Header />
       <LoginForm />
     </div>
-  )
+  );
 }

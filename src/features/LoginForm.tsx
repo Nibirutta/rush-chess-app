@@ -1,13 +1,13 @@
-import { useState, type ChangeEvent } from 'react';
-import { SubmitButton } from '../components/SubmitButton';
-import './LoginForm.css';
-import { InputField } from '../components/InputField';
-import { requestLogin } from '../api/player/playerService';
+import { useState, type ChangeEvent } from "react";
+import { SubmitButton } from "../components/SubmitButton";
+import "./LoginForm.css";
+import { InputField } from "../components/InputField";
+import { requestLogin } from "../api/player/playerService";
 
 export function LoginForm() {
-  const [ username, setUsername ] = useState('');
-  const [ password, setPassword ] = useState('');
-  const [ loading, setLoading ] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function UpdateUsername(event: ChangeEvent<HTMLInputElement>) {
     setUsername(event.target.value);
@@ -18,11 +18,11 @@ export function LoginForm() {
   }
 
   async function Login() {
-    if (!loading) {      
+    if (!loading) {
       setLoading(true);
 
       try {
-        const data = await requestLogin({username, password});
+        const data = await requestLogin({ username, password });
 
         console.log(data);
       } catch {
@@ -38,12 +38,22 @@ export function LoginForm() {
 
   return (
     <div className="login-form">
-      <InputField placeholder='Username' value={username} contentType='text' onChangeFunction={UpdateUsername} />
-      <InputField placeholder='Password' value={password} contentType='password' onChangeFunction={UpdatePassword} />
-      <div className='login-buttons'>
-        <SubmitButton name='Login' submitFunction={Login}/>
-        <SubmitButton name='Register' submitFunction={RedirectRegister} />
+      <InputField
+        placeholder="Username"
+        value={username}
+        contentType="text"
+        onChangeFunction={UpdateUsername}
+      />
+      <InputField
+        placeholder="Password"
+        value={password}
+        contentType="password"
+        onChangeFunction={UpdatePassword}
+      />
+      <div className="login-buttons">
+        <SubmitButton name="Login" submitFunction={Login} />
+        <SubmitButton name="Register" submitFunction={RedirectRegister} />
       </div>
     </div>
-  )
+  );
 }
