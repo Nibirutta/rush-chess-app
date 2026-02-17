@@ -5,6 +5,7 @@ export type IAuthContext = {
   player: PlayerInfo | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  activeToken: string | null;
   login: (data: RequestLoginType) => Promise<void>;
   logout: () => Promise<void>;
 };

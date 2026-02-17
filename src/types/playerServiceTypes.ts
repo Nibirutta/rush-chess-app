@@ -6,6 +6,11 @@ export interface PlayerInfo {
   username: string;
 }
 
+export interface SessionInfo {
+  player: PlayerInfo,
+  activeToken: string,
+}
+
 // Requests
 
 export interface RequestLoginType {

@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./styles/globals.css";
 import App from "./App.tsx";
-import { AuthProvider } from "./context/AuthProvider.tsx";
+import { AuthProvider } from "./provider/AuthProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

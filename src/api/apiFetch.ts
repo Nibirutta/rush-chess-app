@@ -57,9 +57,6 @@ export async function apiFetch(
       try {
         const refreshResponse = await requestRefresh();
         setAccessToken(refreshResponse.accessToken);
-        dispatchAccountEvent("updatePlayer", {
-          detail: refreshResponse.player,
-        });
 
         processQueue();
 

@@ -5,8 +5,6 @@ export function useAuth(): IAuthContext {
   const context = useContext(AuthContext);
 
   if (!context) {
-    console.log("Oh loko");
-
     throw new Error("Without context");
   }
 

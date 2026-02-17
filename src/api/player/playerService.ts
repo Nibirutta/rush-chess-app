@@ -1,10 +1,11 @@
-import { apiFetch, setAccessToken } from "../apiFetch";
+import { apiFetch } from "../apiFetch";
 import type {
   RequestLoginType,
   ResponseLoginType,
   ResponseRefreshType,
 } from "../../types/playerServiceTypes";
 import { loginRoute, logoutRoute, refreshRoute } from "../../utils/api-routes";
+import { dispatchAccountEvent } from "../accountEvents";
 
 export async function requestLogin(
   data: RequestLoginType,
@@ -14,9 +15,12 @@ export async function requestLogin(
     body: JSON.stringify(data),
   });
 
-  if (response.accessToken) {
-    setAccessToken(response.accessToken);
-  }
+  dispatchAccountEvent("syncPlayer", {
+    detail: {
+      player: response.player,
+      activeToken: response.accessToken
+    },
+  });
 
   return response;
 }
@@ -26,16 +30,20 @@ export async function requestRefresh(): Promise<ResponseRefreshType> {
     method: refreshRoute.method,
   });
 
+  dispatchAccountEvent("syncPlayer", {
+    detail: {
+      player: response.player,
+      activeToken: response.accessToken
+    },
+  });
+
   return response;
 }
 
 export async function requestLogout() {
   const response = await apiFetch(logoutRoute.route, {
-    method: logoutRoute.route,
+    method: logoutRoute.method,
   });
-
-  // Remove later
-  console.log(response);
 
   return response;
 }

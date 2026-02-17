@@ -1,12 +1,12 @@
-import type { PlayerInfo } from "../types/playerServiceTypes";
+import type { SessionInfo } from "../types/playerServiceTypes";
 
-type AccountEventsType = "forceLogout" | "updatePlayer";
+type AccountEventsType = "forceLogout" | "syncPlayer";
 
 const AccountEventsTarget = new EventTarget();
 
 export function dispatchAccountEvent(
   type: AccountEventsType,
-  data?: CustomEventInit<PlayerInfo>,
+  data?: CustomEventInit<SessionInfo>,
 ) {
   AccountEventsTarget.dispatchEvent(new CustomEvent(type, data));
 }
@@ -16,4 +16,11 @@ export function addAccountEventListener(
   listener: EventListener,
 ) {
   AccountEventsTarget.addEventListener(type, listener);
+}
+
+export function removeAccountEventListener(
+  type: AccountEventsType,
+  listener: EventListener,
+) {
+  AccountEventsTarget.removeEventListener(type, listener);
 }
