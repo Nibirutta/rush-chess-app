@@ -1,0 +1,28 @@
+export {
+  boardPositionSchema,
+  chessColorSchema,
+  drawTypeSchema,
+  finishedMatchNotificationSchema,
+  finishedMatchSchema,
+  getAvailableMovesPayloadSchema,
+  makeMovePayloadSchema,
+  matchFinishedReasonSchema,
+  matchSchema,
+  matchStateSchema,
+  promotionPieceSchema,
+} from './schemas/match.schemas'
+export type {
+  BoardPosition,
+  ChessColor,
+  DrawType,
+  FinishedMatch,
+  FinishedMatchNotification,
+  GetAvailableMovesPayload,
+  MakeMovePayload,
+  Match,
+  MatchClientEvents,
+  MatchFinishedReason,
+  MatchServerEvents,
+  MatchState,
+  PromotionPiece,
+} from './schemas/match.schemas'

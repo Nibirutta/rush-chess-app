@@ -1,6 +1,5 @@
 import { z } from 'zod'
-
-import { socketErrorSchema } from '../../../types'
+import type { SocketError } from '../../../types'
 
 export const playerStatusSchema = z.enum([
   'READY',
@@ -98,5 +97,5 @@ export interface LobbyServerEvents {
   notify_invite_not_accepted: () => void
   notify_invite_expired: (payload: InviteExpiredNotification) => void
   notify_player_update: (payload: PlayerUpdateNotification) => void
-  notify_exception: (payload: z.infer<typeof socketErrorSchema>) => void
+  notify_exception: (payload: SocketError) => void
 }
