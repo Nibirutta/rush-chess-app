@@ -19,6 +19,8 @@ export const lobbyMessageSchema = z.object({
   message: z.string(),
 })
 
+export const lobbyMessagesResponseSchema = z.array(z.string())
+
 export const sendMessagePayloadSchema = z.object({
   content: z.string().trim().min(1).max(200),
 })

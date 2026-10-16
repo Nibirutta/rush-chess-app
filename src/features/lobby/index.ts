@@ -4,6 +4,7 @@ export {
   inviteNotificationSchema,
   inviteResponsePayloadSchema,
   lobbyMessageSchema,
+  lobbyMessagesResponseSchema,
   lobbyMessagesRequestSchema,
   onlinePlayerSchema,
   playerStatusSchema,
@@ -28,3 +29,4 @@ export type {
   SendMessagePayload,
   SetPlayerStatusPayload,
 } from './schemas/lobby.schemas'
+export { getMessages } from './services/lobbyApi'
