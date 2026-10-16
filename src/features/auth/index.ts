@@ -12,3 +12,9 @@ export type {
   PlayerProfile,
   RegisterRequest,
 } from './schemas/auth.schemas'
+export {
+  login,
+  logout,
+  refresh,
+  register,
+} from './services/authApi'
