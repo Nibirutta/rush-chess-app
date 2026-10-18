@@ -1,14 +1,14 @@
-import { io } from 'socket.io-client'
+import { io } from 'socket.io-client';
 
 import type {
   SocketClientOptions,
   SocketConnection,
   SocketEvents,
-} from './socketTypes'
+} from './socketTypes';
 
 export const createSocketClient = <
-  ServerEvents extends SocketEvents = SocketEvents,
-  ClientEvents extends SocketEvents = ServerEvents,
+  ServerEvents = SocketEvents,
+  ClientEvents = SocketEvents,
 >({
   url,
   accessToken,
@@ -22,13 +22,4 @@ export const createSocketClient = <
       access_token: accessToken,
     },
     query,
-  }) as SocketConnection<ServerEvents, ClientEvents>
-
-export const updateSocketAccessToken = (
-  socket: SocketConnection,
-  accessToken: string,
-) => {
-  socket.auth = {
-    access_token: accessToken,
-  }
-}
+  }) as SocketConnection<ServerEvents, ClientEvents>;

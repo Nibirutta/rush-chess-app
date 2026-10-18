@@ -1,16 +1,14 @@
-import { httpClient } from '../../../lib/http/httpClient'
+import { httpClient } from '../../../lib/http/httpClient';
 import {
   lobbyMessagesResponseSchema,
   lobbyMessagesRequestSchema,
-} from '../schemas/lobby.schemas'
-import type {
-  LobbyMessagesRequest,
-} from '../schemas/lobby.schemas'
+} from '../schemas/lobby.schemas';
+import type { LobbyMessagesRequest } from '../schemas/lobby.schemas';
 
 export const getMessages = async (
   request: LobbyMessagesRequest = {},
 ): Promise<string[]> => {
-  const validatedRequest = lobbyMessagesRequestSchema.parse(request)
+  const validatedRequest = lobbyMessagesRequestSchema.parse(request);
 
   return httpClient.request(
     {
@@ -19,5 +17,5 @@ export const getMessages = async (
       query: validatedRequest,
     },
     lobbyMessagesResponseSchema,
-  )
-}
+  );
+};

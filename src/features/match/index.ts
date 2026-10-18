@@ -9,7 +9,12 @@ export {
   matchSchema,
   matchStateSchema,
   promotionPieceSchema,
-} from './schemas/match.schemas'
+} from './schemas/match.schemas';
+export { createMatchSocket } from './services/matchSocket';
+export type {
+  MatchSocketAdapter,
+  MatchSocketOptions,
+} from './services/matchSocket';
 export type {
   BoardPosition,
   ChessColor,
@@ -23,4 +28,4 @@ export type {
   MatchServerEvents,
   MatchState,
   PromotionPiece,
-} from './schemas/match.schemas'
+} from './schemas/match.schemas';

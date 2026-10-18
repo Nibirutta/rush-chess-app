@@ -12,7 +12,7 @@ export {
   sendInvitePayloadSchema,
   sendMessagePayloadSchema,
   setPlayerStatusPayloadSchema,
-} from './schemas/lobby.schemas'
+} from './schemas/lobby.schemas';
 export type {
   InviteAcceptedNotification,
   InviteExpiredNotification,
@@ -28,5 +28,10 @@ export type {
   SendInvitePayload,
   SendMessagePayload,
   SetPlayerStatusPayload,
-} from './schemas/lobby.schemas'
-export { getMessages } from './services/lobbyApi'
+} from './schemas/lobby.schemas';
+export { getMessages } from './services/lobbyApi';
+export { createLobbySocket } from './services/lobbySocket';
+export type {
+  LobbySocketAdapter,
+  LobbySocketOptions,
+} from './services/lobbySocket';
