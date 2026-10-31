@@ -1,0 +1,219 @@
+:root {
+  color: #4a4a4a;
+  font-family: Nunito, ui-rounded, "Trebuchet MS", sans-serif;
+  background: #fff9d2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fff9d2 0%, #ffebcc 100%);
+}
+
+.site-header,
+.site-footer {
+  position: relative;
+  z-index: 1;
+  padding: 1.25rem clamp(1.25rem, 5vw, 4rem);
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  background: rgb(255 245 245 / 75%);
+  border-bottom: 1px solid rgb(226 180 189 / 35%);
+}
+
+.brand {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  color: inherit;
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  color: #fff5f5;
+  background: #8cc0eb;
+  border-radius: 0.75rem;
+}
+
+.site-footer {
+  margin-top: auto;
+  color: #6c6970;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.page-content,
+.game-layout {
+  width: min(100% - 2rem, 72rem);
+  margin: auto;
+}
+
+.placeholder-card,
+.board-placeholder,
+.chat-placeholder {
+  padding: clamp(2rem, 6vw, 4rem);
+  background: rgb(255 245 245 / 88%);
+  border: 1px solid rgb(226 180 189 / 50%);
+  border-radius: 2rem;
+  box-shadow: 0 1rem 3rem rgb(74 74 74 / 8%);
+}
+
+.placeholder-card {
+  max-width: 32rem;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.eyebrow {
+  color: #6b9fc4;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0.75rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+.placeholder-card p,
+.board-placeholder p,
+.chat-placeholder p {
+  color: #6c6970;
+  line-height: 1.6;
+}
+
+.feedback {
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+}
+
+.feedback-error {
+  color: #914d5d;
+  background: #f7d6d0;
+}
+
+.loading-shell {
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(74 74 74 / 18%);
+}
+
+.loading-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(calc(100% - 2rem), 28rem);
+  gap: 1rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background: #fff5f5;
+  border-radius: 1.5rem;
+  box-shadow: 0 1.5rem 4rem rgb(74 74 74 / 18%);
+}
+
+.loading-card h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.spinner {
+  width: 4rem;
+  height: 4rem;
+  border: 0.45rem solid #c8dfdb;
+  border-top-color: #8cc0eb;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.button {
+  padding: 0.7rem 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.75rem;
+}
+
+.button-secondary {
+  color: #4a4a4a;
+  background: #c8dfdb;
+}
+
+.game-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 20rem);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.session-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .game-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 1.8s;
+  }
+}
