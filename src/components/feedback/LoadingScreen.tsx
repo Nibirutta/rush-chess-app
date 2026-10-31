@@ -4,11 +4,7 @@ interface LoadingScreenProps {
   onRetry?: () => void;
 }
 
-export function LoadingScreen({
-  message,
-  error,
-  onRetry,
-}: LoadingScreenProps) {
+export function LoadingScreen({ message, error, onRetry }: LoadingScreenProps) {
   return (
     <div className="app-shell loading-shell">
       <div className="loading-backdrop" aria-hidden="true" />
