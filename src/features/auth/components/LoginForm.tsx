@@ -1,5 +1,6 @@
 import { useState, type SubmitEvent } from 'react';
 import { loginRequestSchema, type LoginRequest } from '../schemas/auth.schemas';
+import { PasswordVisibilityButton } from './PasswordVisibilityButton';
 
 interface LoginFormProps {
   onSubmit: (credentials: LoginRequest) => Promise<void>;
@@ -14,6 +15,7 @@ export function LoginForm({
 }: LoginFormProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [validationError, setValidationError] = useState<string>();
   const [submissionError, setSubmissionError] = useState<string>();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -67,16 +69,23 @@ export function LoginForm({
       </div>
       <div className="form-field">
         <label htmlFor="login-password">Senha</label>
-        <input
-          id="login-password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          disabled={isSubmitting}
-          required
-        />
+        <div className="password-input-wrapper">
+          <input
+            id="login-password"
+            name="password"
+            type={isPasswordVisible ? 'text' : 'password'}
+            autoComplete="current-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+          <PasswordVisibilityButton
+            isVisible={isPasswordVisible}
+            onToggle={() => setIsPasswordVisible((visible) => !visible)}
+            disabled={isSubmitting}
+          />
+        </div>
       </div>
       {formError && (
         <p className="form-error" role="alert">

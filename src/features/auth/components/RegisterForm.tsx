@@ -3,6 +3,7 @@ import {
   registerRequestSchema,
   type RegisterRequest,
 } from '../schemas/auth.schemas';
+import { PasswordVisibilityButton } from './PasswordVisibilityButton';
 
 interface RegisterFormProps {
   onSubmit: (credentials: RegisterRequest) => Promise<void>;
@@ -18,6 +19,8 @@ export function RegisterForm({
   const [nickname, setNickname] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [arePasswordsVisible, setArePasswordsVisible] = useState(false);
   const [validationError, setValidationError] = useState<string>();
   const [submissionError, setSubmissionError] = useState<string>();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,6 +39,11 @@ export function RegisterForm({
       setValidationError(
         result.error.issues[0]?.message ?? 'Revise os dados informados.',
       );
+      return;
+    }
+
+    if (password !== passwordConfirmation) {
+      setValidationError('As senhas precisam ser iguais.');
       return;
     }
 
@@ -88,20 +96,47 @@ export function RegisterForm({
       </div>
       <div className="form-field">
         <label htmlFor="register-password">Senha</label>
-        <input
-          id="register-password"
-          name="password"
-          type="password"
-          autoComplete="new-password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          disabled={isSubmitting}
-          required
-        />
+        <div className="password-input-wrapper">
+          <input
+            id="register-password"
+            name="password"
+            type={arePasswordsVisible ? 'text' : 'password'}
+            autoComplete="new-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+          <PasswordVisibilityButton
+            isVisible={arePasswordsVisible}
+            onToggle={() => setArePasswordsVisible((visible) => !visible)}
+            disabled={isSubmitting}
+          />
+        </div>
         <small>
           Use de 8 a 20 caracteres, com letras maiúsculas, minúsculas, número e
           caractere especial.
         </small>
+      </div>
+      <div className="form-field">
+        <label htmlFor="register-password-confirmation">Confirmar senha</label>
+        <div className="password-input-wrapper">
+          <input
+            id="register-password-confirmation"
+            name="passwordConfirmation"
+            type={arePasswordsVisible ? 'text' : 'password'}
+            autoComplete="new-password"
+            value={passwordConfirmation}
+            onChange={(event) => setPasswordConfirmation(event.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+          <PasswordVisibilityButton
+            isVisible={arePasswordsVisible}
+            onToggle={() => setArePasswordsVisible((visible) => !visible)}
+            disabled={isSubmitting}
+          />
+        </div>
       </div>
       {formError && (
         <p className="form-error" role="alert">
