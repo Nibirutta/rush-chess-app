@@ -34,7 +34,7 @@ export function AuthenticationScreen({ error }: AuthenticationScreenProps) {
 
           <div className="authentication-tabs" aria-label="Tipo de acesso">
             <button
-              className={`tab-button ${mode === 'login' ? 'tab-button-active' : ''}`}
+              className={`tab-button ${mode === 'login' ? 'tab-button-active' : 'tab-button-inactive'}`}
               type="button"
               aria-pressed={mode === 'login'}
               onClick={() => setMode('login')}
@@ -42,7 +42,7 @@ export function AuthenticationScreen({ error }: AuthenticationScreenProps) {
               Entrar
             </button>
             <button
-              className={`tab-button ${mode === 'register' ? 'tab-button-active' : ''}`}
+              className={`tab-button ${mode === 'register' ? 'tab-button-active' : 'tab-button-inactive'}`}
               type="button"
               aria-pressed={mode === 'register'}
               onClick={() => setMode('register')}

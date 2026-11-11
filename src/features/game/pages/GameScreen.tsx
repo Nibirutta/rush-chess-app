@@ -9,12 +9,12 @@ export function GameScreen() {
     <div className="app-shell">
       <SiteHeader />
       <main className="game-layout">
-        <section className="board-placeholder" aria-labelledby="board-title">
+        <section className="board-card" aria-labelledby="board-title">
           <span className="eyebrow">Partida</span>
           <h1 id="board-title">Tabuleiro em breve</h1>
           <p>Este será o espaço central para sua próxima partida.</p>
         </section>
-        <aside className="chat-placeholder" aria-labelledby="chat-title">
+        <aside className="chat-card" aria-labelledby="chat-title">
           <h2 id="chat-title">Chat</h2>
           <p>O chat da partida aparecerá aqui.</p>
         </aside>
@@ -22,7 +22,7 @@ export function GameScreen() {
       <div className="session-bar">
         <span>Olá, {profile?.nickname ?? 'jogador'}!</span>
         <button
-          className="button button-secondary"
+          className="button button-primary"
           type="button"
           onClick={() => void signOut()}
         >

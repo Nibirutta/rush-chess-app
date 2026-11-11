@@ -14,7 +14,7 @@ export function LoadingScreen({ message, error, onRetry }: LoadingScreenProps) {
         {error && <p className="feedback feedback-error">{error.message}</p>}
         {onRetry && (
           <button
-            className="button button-secondary"
+            className="button button-primary"
             type="button"
             onClick={onRetry}
           >

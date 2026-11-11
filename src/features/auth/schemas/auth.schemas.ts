@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export const passwordSchema = z
   .string()
-  .min(8)
-  .max(20)
+  .min(8, 'A senha deve possuir no mínimo 8 caracteres')
+  .max(20, 'A senha deve possuir no máximo 20 caracteres')
   .regex(/[0-9]/, 'A senha deve conter pelo menos um número')
   .regex(/[a-z]/, 'A senha deve conter pelo menos uma letra minúscula')
   .regex(/[A-Z]/, 'A senha deve conter pelo menos uma letra maiúscula')
