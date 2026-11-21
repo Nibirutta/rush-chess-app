@@ -1,0 +1,21 @@
+.app-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-page-background);
+  background-image: conic-gradient(
+    var(--color-page-background-alt) 25%,
+    var(--color-page-background) 0 50%,
+    var(--color-page-background-alt) 0 75%,
+    var(--color-page-background) 0
+  );
+  background-size: 12rem 12rem;
+}
+
+.page-content,
+.game-layout {
+  width: min(100% - 2rem, 72rem);
+  margin: auto;
+}

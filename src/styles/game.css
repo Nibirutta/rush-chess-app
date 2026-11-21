@@ -1,0 +1,35 @@
+.board-card,
+.chat-card {
+  padding: clamp(2rem, 6vw, 4rem);
+  background: var(--color-surface-card);
+  border: 2px solid var(--color-border);
+  border-radius: 2rem;
+  box-shadow: 0 1rem 3rem var(--color-shadow);
+}
+
+.board-card p,
+.chat-card p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.game-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 20rem);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.session-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 700px) {
+  .game-layout {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,41 @@
+:root {
+  /* DARK COLORS */
+  --neutral-dark-color: #664b29;
+  --darker-color: #1f150c;
+  --colorful-dark-color: #412d15;
+
+  /* LIGHT COLORS */
+  --contrast-light-color: #cc6f00;
+  --neutral-light-color: #ebd690;
+  --soft-light-color: #f5edd5;
+
+  --color-page-background: var(--colorful-dark-color);
+  --color-page-background-alt: var(--neutral-light-color);
+  --color-text: var(--soft-light-color);
+  --color-text-alt: var(--contrast-light-color);
+  --color-text-form: var(--colorful-dark-color);
+  --color-text-muted: var(--neutral-dark-color);
+  --color-error-background: var(--contrast-light-color);
+  --color-error-text: var(--darker-color);
+  --color-surface-background: var(--colorful-dark-color);
+  --color-surface-logo: var(--neutral-light-color);
+  --color-surface-header: var(--darker-color);
+  --color-surface-footer: var(--darker-color);
+  --color-surface-spinner: var(--neutral-dark-color);
+  --color-surface-spinner-contrast: var(--contrast-light-color);
+  --color-surface-card: var(--darker-color);
+  --color-surface-input: var(--neutral-light-color);
+  --color-surface-button: var(--colorful-dark-color);
+  --color-surface-button-hover: var(--neutral-dark-color);
+  --color-border: var(--neutral-dark-color);
+  --color-border-focus: var(--contrast-light-color);
+  --color-shadow: rgb(74 74 74 / 12%);
+  --color-overlay: rgb(74 74 74 / 18%);
+  --color-focus-ring: rgb(177 177 177 / 25%);
+
+  color: var(--color-text);
+  font-family: Nunito, ui-rounded, 'Trebuchet MS', sans-serif;
+  background: var(--color-page-background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}

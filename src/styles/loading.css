@@ -1,0 +1,46 @@
+.loading-shell {
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--color-overlay);
+}
+
+.loading-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(calc(100% - 2rem), 28rem);
+  gap: 1rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background: var(--color-surface-card);
+  border: 2px solid var(--color-border);
+  border-radius: 1.5rem;
+  box-shadow: 0 1.5rem 4rem var(--color-shadow);
+}
+
+.loading-card h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.spinner {
+  width: 4rem;
+  height: 4rem;
+  border: 0.45rem solid var(--color-surface-spinner);
+  border-top-color: var(--color-surface-spinner-contrast);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
