@@ -1,6 +1,5 @@
 .site-header,
 .site-footer {
-  position: relative;
   z-index: 1;
   padding: 1.25rem clamp(1.25rem, 5vw, 4rem);
 }

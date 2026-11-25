@@ -1,33 +1,36 @@
-import { useAuth } from '../../auth';
+import { useState } from 'react';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SiteFooter } from '../../../components/layout/SiteFooter';
 import { SiteHeader } from '../../../components/layout/SiteHeader';
 
 export function GameScreen() {
-  const { profile, signOut } = useAuth();
+  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
   return (
     <div className="app-shell">
       <SiteHeader />
-      <main className="game-layout">
-        <section className="board-card" aria-labelledby="board-title">
-          <span className="eyebrow">Partida</span>
-          <h1 id="board-title">Tabuleiro em breve</h1>
-          <p>Este será o espaço central para sua próxima partida.</p>
-        </section>
-        <aside className="chat-card" aria-labelledby="chat-title">
-          <h2 id="chat-title">Chat</h2>
-          <p>O chat da partida aparecerá aqui.</p>
-        </aside>
-      </main>
-      <div className="session-bar">
-        <span>Olá, {profile?.nickname ?? 'jogador'}!</span>
-        <button
-          className="button button-primary"
-          type="button"
-          onClick={() => void signOut()}
+      <div className="game-screen-content">
+        <main className="game-layout"></main>
+        <div
+          id="game-menu-panel"
+          className={`game-menu${isMenuExpanded ? ' is-expanded' : ''}`}
+          onClick={() => setIsMenuExpanded((expanded) => !expanded)}
         >
-          Sair
-        </button>
+          <button
+            className="game-menu-toggle"
+            type="button"
+            aria-label={isMenuExpanded ? 'Recolher menu' : 'Expandir menu'}
+            aria-expanded={isMenuExpanded}
+            aria-controls="game-menu-panel"
+          >
+            <FontAwesomeIcon
+              className={`game-menu-icon${isMenuExpanded ? ' is-expanded' : ''}`}
+              icon={faChevronUp}
+              aria-hidden="true"
+            />
+          </button>
+        </div>
       </div>
       <SiteFooter />
     </div>
